@@ -9,9 +9,25 @@ echo "  |         |      /     /     /----\   |____"
 echo "  |         |     /     /     /      \       |"
 echo "  |_____ ___|___ /____ /____ /        \ _____| "
 
-echo "Motto: Probably better than nothing!"
+echo "Motto: I'm lovin' it"
 
-echo "About Us: We're 
+echo "About Us: We're"
 
-echo "Welcome"
+echo "Menu:"
+echo "--------------------------------"
+
+echo "Food:"
+
+printf "1) Cheese Pizza: $"55"\n - Bread bits mixed into a bowl of tomatoe sauce, does not come with cheese.\n"
+
+
+
+function taxes
+{
+ A=.07
+ SUM=$(($1 + $2))
+ TAX=$(echo "$SUM*$A"|bc)
+ REAL=$(echo "$SUM+$TAX"|bc)
+ echo "Total: $"$REAL""
+}
 
