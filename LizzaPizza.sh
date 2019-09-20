@@ -13,4 +13,5 @@ echo "Motto: Probably better than nothing!"
 
 echo "About Us: We're 
 
+echo "Welcome"
 
