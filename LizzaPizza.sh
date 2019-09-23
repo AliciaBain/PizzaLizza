@@ -47,14 +47,17 @@ read -p "Which item would you like? >> " selection
 
 while true
 do
-if ["$selection" -eq "1"] || ["$selection" -eq "Cheese Pizza"] || ["$selection" -eq "c*"] 
+if [ "$selection" = "1" ] || [ "$selection" = "Cheese Pizza" ] || [ "$selection" = "c" ] 
  then
   read -p "You have selected Cheese Pizza. How many would you like? >> " ansone
-   if [$ansone -eq *]
-    then
-     echo ""
+   if [ $ansone = * ]
+    then 
+     read -p "Please enter a valid number >> " ansone
+      fi
+
+        echo ""
       echo "Would you like another Pizza?"
-       fi
+       
        read input
         case $input in
         Y|y|yes|Yes|Y*)
