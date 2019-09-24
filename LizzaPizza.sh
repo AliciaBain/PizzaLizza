@@ -8,11 +8,45 @@ FIRST=55
 SECOND=70
 THIRD=99
 
+ansone=0
+anstwo=0
+selection=0
+
 PIZ1="Cheese Pizza"
 PIZ2="Vegan Pizza"
 PIZ3="Lizza's Special"
 
 #Functions------------------------------------------------------------------------------
+function code
+{
+read -p "Which item would you like? >> " selection
+ 
+while true
+do
+if [ "$selection" = "1"
+then
+C=$anstwo
+  read -p "You have selected Vegan Pizza. How many would you like? >> " D
+   if [ $D -lt 1 ]
+    then
+     read -p "Please enter a valid number >> " D
+      anstwo=(($C+$D))
+       echo "$anstwo Vegan Pizza"
+
+elif [ "$selection" = "2" ]
+ then
+C=$anstwo
+  read -p "You have selected Vegan Pizza. How many would you like? >> " D
+   if [ $D -lt 1 ]
+    then
+     read -p "Please enter a valid number >> " D
+      anstwo=(($C+$D))
+       echo "$anstwo Vegan Pizza"      
+        fi
+fi
+       done
+}
+
 function food #Displays menu
 {
 echo "Menu:"
@@ -31,12 +65,7 @@ echo ""
 function order #Displays current order
 {
 printf "Your selection so far:\n"
- if [ "$selection" = "1" ] || [ "$selection" = "Cheese Pizza"] || [ "$selection" = "cheese pizza"]
- then
-	 echo "Food: $ansone($x) $PIZ1 "$"$(($FIRST+$ansone($x)))"
-else 
-echo ""
-fi
+
 }
 
 function title #Clears the screen then displays title
@@ -61,46 +90,51 @@ echo "Motto: I'm lovin' it"
 
 echo "About Us: We're"
 
-sleep 5
+#sleep 5
 
 
 #Food menu selection
 title
 food
 
-read -p "Which item would you like? >> " selection
+#read -p "Which item would you like? >> " selection
+code
+#while true
+#do
+#if [ "$selection" = "1" ] 
+# then
+#  read -p "You have selected Cheese Pizza. How many would you like? >> " ansone
+#   if [ $ansone -lt 1 ]
+#    then 
+#     read -p "Please enter a valid number >> " ansone
+#      else 
+#       echo "$ansone Cheese Pizza"	
+#       break
+#       fi
+#       fi
+#       done      
 
+read -p "Would you like another Pizza? [y or n] " input   
+  
+ case $input in 
+  [yY]*)
+title
+food
+read -p "Which item would you like? >> " 
 while true
 do
-if [ "$selection" = "1" ] || [ "$selection" = "Cheese Pizza" ] || [ "$selection" = "C*" ]
+if [ "$selection" = "1" ]
  then
   read -p "You have selected Cheese Pizza. How many would you like? >> " ansone
    if [ $ansone -lt 1 ]
-    then 
+    then
      read -p "Please enter a valid number >> " ansone
-      else 
-       echo "$ansone Cheese Pizza"	
+      else
+       echo "$ansone Cheese Pizza"      
        break
        fi
        fi
-       done      
-
-echo "Would you like another Pizza? [y or n]  "
-    read input
-       case $input in
-        Y|y|yes|Yes|Y*)
-         food
-          read -p "Which item would you like? >> " selectiontwo;;
-           n|N|No|no|N*|n*)  
-            break
-          esac 
-# else
- # read -p "Invalid selection. Please Select an item >> " selection
-
-
-#function thing
-#{
-#case $ans in
-#y|Y|yes|Yes|y*|Y*
-#esac
-#}
+       done;;
+  [nN]*)
+ echo "no";;
+esac  
