@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #Arrays
-#ansone=()
 
 #Variables-------------------------------------------------------------------------------
 FIRST=55
@@ -17,32 +16,34 @@ PIZ2="Vegan Pizza"
 PIZ3="Lizza's Special"
 
 #Functions------------------------------------------------------------------------------
-function code
+function codefood
 {
 read -p "Which item would you like? >> " selection
  
 while true
 do
-if [ "$selection" = "1"
+if [ "$selection" = "1" ]
 then
-C=$anstwo
-  read -p "You have selected Vegan Pizza. How many would you like? >> " D
-   if [ $D -lt 1 ]
-    then
-     read -p "Please enter a valid number >> " D
-      anstwo=(($C+$D))
-       echo "$anstwo Vegan Pizza"
-
+ A=$ansone
+  read -p "You have selected Cheese Pizza. How many would you like? >> " B
+   case $B in
+    [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
+     read -p "Please enter a valid number >> " B ;;
+      [123456789]*)
+       ansone=$(($A+$B))
+       echo "$ansone Cheese Pizza"
+        break
+         esac
 elif [ "$selection" = "2" ]
  then
-C=$anstwo
-  read -p "You have selected Vegan Pizza. How many would you like? >> " D
-   if [ $D -lt 1 ]
-    then
-     read -p "Please enter a valid number >> " D
-      anstwo=(($C+$D))
-       echo "$anstwo Vegan Pizza"      
-        fi
+  C=$anstwo
+   read -p "You have selected Vegan Pizza. How many would you like? >> " D
+    if [ $D -lt 1 ]
+     then
+      read -p "Please enter a valid number >> " D
+       anstwo=$(($C+$D))
+        echo "$anstwo Vegan Pizza"      
+         fi
 fi
        done
 }
@@ -98,7 +99,14 @@ title
 food
 
 #read -p "Which item would you like? >> " selection
-code
+codefood
+read -p "Would you like another item? >> " input
+case $input in
+ [yY]*)
+  codefood;;
+  [nN]*)
+   break
+esac
 #while true
 #do
 #if [ "$selection" = "1" ] 
@@ -114,27 +122,27 @@ code
 #       fi
 #       done      
 
-read -p "Would you like another Pizza? [y or n] " input   
+#read -p "Would you like another Pizza? [y or n] " input   
   
- case $input in 
-  [yY]*)
-title
-food
-read -p "Which item would you like? >> " 
-while true
-do
-if [ "$selection" = "1" ]
- then
-  read -p "You have selected Cheese Pizza. How many would you like? >> " ansone
-   if [ $ansone -lt 1 ]
-    then
-     read -p "Please enter a valid number >> " ansone
-      else
-       echo "$ansone Cheese Pizza"      
-       break
-       fi
-       fi
-       done;;
-  [nN]*)
- echo "no";;
-esac  
+# case $input in 
+#  [yY]*)
+#title
+#food
+#read -p "Which item would you like? >> " 
+#while true
+#do
+#if [ "$selection" = "1" ]
+# then
+#  read -p "You have selected Cheese Pizza. How many would you like? >> " ansone
+#   if [ $ansone -lt 1 ]
+#    then
+#     read -p "Please enter a valid number >> " ansone
+#      else
+#       echo "$ansone Cheese Pizza"      
+#       break
+#       fi
+#       fi
+#       done;;
+#  [nN]*)
+# echo "no";;
+#esac  
