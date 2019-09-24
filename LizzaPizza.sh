@@ -9,7 +9,9 @@ THIRD=99
 
 ansone=0
 anstwo=0
+ansthree=0
 selection=0
+
 
 PIZ1="Cheese Pizza"
 PIZ2="Vegan Pizza"
