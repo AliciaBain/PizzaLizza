@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#Arrays
-
 #Variables-------------------------------------------------------------------------------
 FOOD1=55
 FOOD2=70
@@ -20,15 +18,10 @@ anssix=0
 
 selection=0
 
-
-PIZ1="Cheese Pizza"
-PIZ2="Vegan Pizza"
-PIZ3="Lizza's Special"
-
 #Functions------------------------------------------------------------------------------
 function codefood
 {
-read -p "Which item would you like? >> " selection
+read -p "Which food item would you like? >> " selection
  
 while true
 do
@@ -42,7 +35,6 @@ then
      read -p "Please enter a valid number >> " B ;;
       [123456789]*)
        ansone=$(($A+$B))
-       echo "$ansone Cheese Pizza(s)"
         break
          esac
 elif [ "$selection" = "2" ]
@@ -55,9 +47,8 @@ elif [ "$selection" = "2" ]
      read -p "Please enter a valid number >> " D ;;
       [123456789]*)
        anstwo=$(($C+$D))
-        echo "$anstwo Vegan Pizza(s)"
-         break
-          esac
+        break
+         esac
 elif [ "$selection" = "3" ]
  then
  E=$ansthree
@@ -68,9 +59,8 @@ elif [ "$selection" = "3" ]
      read -p "Please enter a number >> " F ;;
       [123456789]*)
        ansthree=$(($E+$F))
-        echo "$ansthree Lizza's Special(s)"
-         break
-          esac
+        break
+         esac
 else 
  echo "Please enter a valid selection."
   sleep 1
@@ -82,7 +72,12 @@ loopitem
 #####################################################
 function loopitem #this function loops the food selection 
 {
-read -p "Would you like another item? >> " input
+sleep 2
+clear
+title
+foodmenu
+order
+read -p "Would you like another food item? >> " input
 case $input in
  [yY]*)
   codefood;;
@@ -92,28 +87,88 @@ case $input in
   [nN]*)
 esac
 }
-#####################################################  incomplete
-function codedrink
+#####################################################
+function codedrink #this function allows you to select drinks
 {
- echo "drinks go here"
+read -p "Which drink would you like? >> " selection
+
+while true
+do
+if [ "$selection" = "1" ] 
+ then
+ da=$ansfour
+  echo "You have selected Wine" 
+  read -p " How many glasses would you like? >> " drinkone
+   case $drinkone in
+    [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
+     read -p "Please enter a number >> " drinkone ;;
+      [123456789]*)
+       ansfour=$(($da+$drinkone))
+        break
+         esac
+
+elif [ "$selection" = "2" ]
+ then
+ db=$ansfive
+  echo "You have selected Smoothie." 
+   read -p "How many Smoothies would you like? >> " drinktwo
+    case $drinktwo in
+     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
+      read -p "Please enter a valid number >> " drinktwo ;;
+        [123456789]*)
+         ansfive=$(($db+$drinktwo))
+          break
+           esac
+elif [ "$selection" = "3" ]
+ then
+ dc=$anssix
+  echo "You have selected Soda."
+   read -p " How many cups would you like? >> " drinkthree
+    case $drinkthree in
+     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
+      read -p "Please enter a valid number >> " drinkthree ;;
+        [123456789]*)
+         anssix=$(($dc+$drinkthree))
+          break
+           esac
+else
+ echo "Please enter a valid selection."
+  sleep 1
+  codedrink
+  fi
+   done
+loopdrink
 }
 #####################################################
 function loopdrink #this function loops the drink selection 
 {
-read -p "Would you like another item? >> " input
+sleep 2
+clear
+title
+drinkmenu
+order
+read -p "Would you like another drink? >> " input
 case $input in
  [yY]*)
   codedrink;;
   [qwertuiopasdfghjklzxcvbmQWERTUIOPASDFGHJKLZXCVBM1234567890]*)
   echo "Please enter 'yes' or 'no'"
-  loopitem;;
+  loopdrink;;
   [nN]*)
 esac
 }
 #####################################################
-function drinkmenu
+function drinkmenu #just displays the drink menu
 {
- echo "drink menu goes here"
+echo " D R I N K S   M E N U "
+echo "--------------------------------"
+
+printf "1) Wine - $"9"\n - A premium 1901 Merlot.\n" 
+
+printf "2) Smoothie -$"5"\n - Red berries smoothie.\n" 
+
+printf "3) Soda - $"4"\n - Fruit Punch flavoured soda.\n" 
+echo ""
 }
 #####################################################
 function foodmenu #Displays food menu
@@ -131,7 +186,7 @@ echo ""
 ##################################################### incomplete
 function order #Displays current order
 {
- printf "Your Current Order:\n -Cheese Pizza: $ansone \n-Vegan Pizza:" 
+ printf "Your Current Order:\n \nFood:\n-Cheese Pizza(s): $ansone \n-Vegan Pizza(s): $anstwo \n-Lizza's Special(s): $ansthree \n\n Drink:\n-Wine(s): $ansfour \n-Smoothie(s): $ansfive \n-Soda(s): $anssix \n\n" 
 
 }
 #####################################################
@@ -147,7 +202,7 @@ echo "  |_____ ___|___ /____ /____ /        \ _____| "
 printf "\n"
 }
 #####################################################
-function total
+function total #calculates the total of your order including tax
 {
 ITEM1=$(($ansone*$FOOD1))
 ITEM2=$(($anstwo*$FOOD2))
@@ -165,19 +220,27 @@ TOTAL=$(echo "$SUM+$TAX"|bc)
 #---------------------------------------------------------------------------------------
 
 
-title
-
+title #clears the screen and displays the title
+echo ""
 echo "Motto: I'm lovin' it"
 
-echo "About Us: We're"
+printf "About Us: We are a virtual pizza place with specialties found no where else!\n And when we say no where else, we mean NOWHERE ELSE!"
 
 sleep 5
 
 
-#Food menu selection
+#clears screen, displays title and Food menu selection
 title
 foodmenu
-
 codefood
-
+#clears screen, displays title and Drink menu selection
+title
+drinkmenu
+order
+codedrink
+#Displays total cost and total amount of each item
+sleep 2
+title
+order
 total
+echo ""
