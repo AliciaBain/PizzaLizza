@@ -21,6 +21,7 @@ selection=0
 #Functions------------------------------------------------------------------------------
 function codefood
 {
+tput setaf 7
 read -p "Which food item would you like? >> " selection
  
 while true
@@ -72,6 +73,7 @@ loopitem
 #####################################################
 function loopitem #this function loops the food selection 
 {
+tput setaf 7
 sleep 2
 clear
 title
@@ -90,6 +92,7 @@ esac
 #####################################################
 function codedrink #this function allows you to select drinks
 {
+tput setaf 7
 read -p "Which drink would you like? >> " selection
 
 while true
@@ -142,6 +145,7 @@ loopdrink
 #####################################################
 function loopdrink #this function loops the drink selection 
 {
+tput setaf 7
 sleep 2
 clear
 title
@@ -160,6 +164,8 @@ esac
 #####################################################
 function drinkmenu #just displays the drink menu
 {
+tput setaf 7
+
 echo " D R I N K S   M E N U "
 echo "--------------------------------"
 
@@ -173,6 +179,8 @@ echo ""
 #####################################################
 function foodmenu #Displays food menu
 {
+tput setaf 7
+
 echo "F O O D  M E N U"
 echo "--------------------------------"
 
@@ -186,14 +194,16 @@ echo ""
 ##################################################### incomplete
 function order #Displays current order
 {
+tput setaf 5
  printf "Your Current Order:\n \nFood:\n-Cheese Pizza(s): $ansone \n-Vegan Pizza(s): $anstwo \n-Lizza's Special(s): $ansthree \n\n Drink:\n-Wine(s): $ansfour \n-Smoothie(s): $ansfive \n-Soda(s): $anssix \n\n" 
-
+tput sgr0
 }
 #####################################################
 function title #Clears the screen then displays title
 {
-	clear
 
+	clear
+tput setaf 3
 echo "    __    ______________   ___   _ "
 echo "   / /   /  _/__  /__  /  /   | ( )_____ "
 echo "  / /    / /   / /  / /  / /| | |// ___/ "
@@ -205,6 +215,7 @@ printf "\n"
 #####################################################
 function total #calculates the total of your order including tax
 {
+tput setaf 5
 ITEM1=$(($ansone*$FOOD1))
 ITEM2=$(($anstwo*$FOOD2))
 ITEM3=$(($ansthree*$FOOD3))
@@ -221,7 +232,9 @@ TOTAL=$(echo "$SUM+$TAX"|bc)
 #---------------------------------------------------------------------------------------
 
 
+
 title #clears the screen and displays the title
+tput setaf 4
 echo ""
 echo "Motto: I'm lovin' it"
 
