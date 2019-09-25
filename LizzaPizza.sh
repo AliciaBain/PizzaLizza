@@ -193,14 +193,15 @@ function order #Displays current order
 function title #Clears the screen then displays title
 {
 	clear
-echo "         _______ _____ _____          |"
-echo "  |         |        /     /     /\     ______"
-echo "  |         |       /     /     /  \    |"
-echo "  |         |      /     /     /----\   |____"
-echo "  |         |     /     /     /      \       |"
-echo "  |_____ ___|___ /____ /____ /        \ _____| "
-printf "\n"
-}
+
+echo "    __    ______________   ___   _ "
+echo "   / /   /  _/__  /__  /  /   | ( )_____ "
+echo "  / /    / /   / /  / /  / /| | |// ___/ "
+echo " / /____/ /   / /__/ /__/ ___ |  (__  ) "
+echo "/_____/___/  /____/____/_/  |_| /____/ "
+printf "\n"	
+}                              
+
 #####################################################
 function total #calculates the total of your order including tax
 {
