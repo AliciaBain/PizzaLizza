@@ -21,7 +21,7 @@ selection=0
 #Functions------------------------------------------------------------------------------
 function codefood
 {
-tput setaf 7
+tput setaf 6
 read -p "Which food item would you like? >> " selection
  
 while true
@@ -73,17 +73,18 @@ loopitem
 #####################################################
 function loopitem #this function loops the food selection 
 {
-tput setaf 7
+tput setaf 6
 sleep 2
 clear
 title
 foodmenu
 order
+tput setaf 6
 read -p "Would you like another food item? >> " input
 case $input in
  [yY]*)
   codefood;;
-  [qwertuiopasdfghjklzxcvbmQWERTUIOPASDFGHJKLZXCVBM1234567890]*)
+  [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
   echo "Please enter 'yes' or 'no'"
   loopitem;; 
   [nN]*)
@@ -92,7 +93,7 @@ esac
 #####################################################
 function codedrink #this function allows you to select drinks
 {
-tput setaf 7
+tput setaf 6
 read -p "Which drink would you like? >> " selection
 
 while true
@@ -145,17 +146,18 @@ loopdrink
 #####################################################
 function loopdrink #this function loops the drink selection 
 {
-tput setaf 7
+tput setaf 6
 sleep 2
 clear
 title
 drinkmenu
 order
+tput setaf 6
 read -p "Would you like another drink? >> " input
 case $input in
  [yY]*)
   codedrink;;
-  [qwertuiopasdfghjklzxcvbmQWERTUIOPASDFGHJKLZXCVBM1234567890]*)
+  [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
   echo "Please enter 'yes' or 'no'"
   loopdrink;;
   [nN]*)
@@ -164,7 +166,7 @@ esac
 #####################################################
 function drinkmenu #just displays the drink menu
 {
-tput setaf 7
+tput setaf 6
 
 echo " D R I N K S   M E N U "
 echo "--------------------------------"
@@ -179,7 +181,7 @@ echo ""
 #####################################################
 function foodmenu #Displays food menu
 {
-tput setaf 7
+tput setaf 6
 
 echo "F O O D  M E N U"
 echo "--------------------------------"
@@ -191,12 +193,43 @@ printf "2) Vegan Pizza - $"70"\n - A Whole Tomatoe\n"
 printf "3) Lizza's Special - $"99"\n - Hot melted cheese, comes with a metal straw to drink it with\n"
 echo ""
 }
-##################################################### incomplete
+##################################################### 
 function order #Displays current order
 {
 tput setaf 5
  printf "Your Current Order:\n \nFood:\n-Cheese Pizza(s): $ansone \n-Vegan Pizza(s): $anstwo \n-Lizza's Special(s): $ansthree \n\n Drink:\n-Wine(s): $ansfour \n-Smoothie(s): $ansfive \n-Soda(s): $anssix \n\n" 
 tput sgr0
+}
+#####################################################
+function initialq #function asks user if they would like to order
+{
+tput setaf 6
+read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
+  case $orderplease in
+   [yY]*);;
+     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
+      echo "Please enter a valid selection"
+       initialq;;
+       [nN]*)
+  exit
+ esac
+}
+#####################################################
+function drinkq #asks if the user will order a drink
+{
+tput setaf 6
+ read -p "Would you like a drink? [y / n] " yn
+  case $yn in
+   [yY]*)
+    title
+    drinkmenu
+    order
+    codedrink;;
+     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
+      echo "Please enter a valid selection"
+       drinkq;;
+        [nN]*)
+ esac
 }
 #####################################################
 function title #Clears the screen then displays title
@@ -227,6 +260,7 @@ Z=.07
 SUM=$(($ITEM1+$ITEM2+$ITEM3+$ITEM4+$ITEM5+$ITEM6))
 TAX=$(echo "$SUM*$Z"|bc)
 TOTAL=$(echo "$SUM+$TAX"|bc)
+tput setaf 3
  echo "Total $"$TOTAL""
 }
 #---------------------------------------------------------------------------------------
@@ -243,15 +277,23 @@ printf "About Us: We are a virtual pizza place with specialties found no where e
 sleep 5
 
 
-#clears screen, displays title and Food menu selection
+#clears screen, displays title and Food & drink  menu selection
+title
+foodmenu
+drinkmenu
+
+#asks the user if they are going to order then displays food selection if yes
+initialq
 title
 foodmenu
 codefood
+
 #clears screen, displays title and Drink menu selection
 title
 drinkmenu
 order
-codedrink
+drinkq
+
 #Displays total cost and total amount of each item
 sleep 2
 title
