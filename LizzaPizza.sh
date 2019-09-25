@@ -28,6 +28,7 @@ PIZ3="Lizza's Special"
 #Functions------------------------------------------------------------------------------
 function codefood
 {
+
 read -p "Which item would you like? >> " selection
  
 while true
@@ -138,14 +139,15 @@ function order #Displays current order
 function title #Clears the screen then displays title
 {
 	clear
-echo "         _______ _____ _____          |"
-echo "  |         |        /     /     /\     ______"
-echo "  |         |       /     /     /  \    |"
-echo "  |         |      /     /     /----\   |____"
-echo "  |         |     /     /     /      \       |"
-echo "  |_____ ___|___ /____ /____ /        \ _____| "
+
+echo "    __    ______________   ___   _ "
+echo "   / /   /  _/__  /__  /  /   | ( )_____ "
+echo "  / /    / /   / /  / /  / /| | |// ___/ "
+echo " / /____/ /   / /__/ /__/ ___ |  (__  ) "
+echo "/_____/___/  /____/____/_/  |_| /____/ "
 printf "\n"
-}
+	}                              
+
 #####################################################
 function total
 {
