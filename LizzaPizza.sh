@@ -33,7 +33,8 @@ then
   read -p " How many would you like? >> " B
    case $B in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     read -p "Please enter a valid number >> " B ;;
+     echo "Please enter a valid number"
+      sleep 1;;
       [123456789]*)
        ansone=$(($A+$B))
         break
@@ -45,7 +46,8 @@ elif [ "$selection" = "2" ]
   read -p "How many would you like? >> " D
    case $D in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     read -p "Please enter a valid number >> " D ;;
+     echo "Please enter a valid number"
+      sleep 1;;
       [123456789]*)
        anstwo=$(($C+$D))
         break
@@ -57,7 +59,8 @@ elif [ "$selection" = "3" ]
   read -p " How many would you like? >> " F
    case $F in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     read -p "Please enter a number >> " F ;;
+     echo "Please enter a number"
+      sleep1;;
       [123456789]*)
        ansthree=$(($E+$F))
         break
@@ -105,7 +108,8 @@ if [ "$selection" = "1" ]
   read -p " How many glasses would you like? >> " drinkone
    case $drinkone in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     read -p "Please enter a number >> " drinkone ;;
+     echo "Please enter a number"
+      sleep 1;;
       [123456789]*)
        ansfour=$(($da+$drinkone))
         break
@@ -118,7 +122,8 @@ elif [ "$selection" = "2" ]
    read -p "How many Smoothies would you like? >> " drinktwo
     case $drinktwo in
      [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-      read -p "Please enter a valid number >> " drinktwo ;;
+      echo "Please enter a valid number"
+       sleep 1;;
         [123456789]*)
          ansfive=$(($db+$drinktwo))
           break
@@ -130,7 +135,8 @@ elif [ "$selection" = "3" ]
    read -p " How many cups would you like? >> " drinkthree
     case $drinkthree in
      [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-      read -p "Please enter a valid number >> " drinkthree ;;
+      echo "Please enter a valid number"
+       sleep 1;;
         [123456789]*)
          anssix=$(($dc+$drinkthree))
           break
@@ -261,7 +267,7 @@ SUM=$(($ITEM1+$ITEM2+$ITEM3+$ITEM4+$ITEM5+$ITEM6))
 TAX=$(echo "$SUM*$Z"|bc)
 TOTAL=$(echo "$SUM+$TAX"|bc)
 tput setaf 3
- echo "Total $"$TOTAL""
+ echo "Total: $"$TOTAL""
 }
 #---------------------------------------------------------------------------------------
 
@@ -271,6 +277,8 @@ title #clears the screen and displays the title
 tput setaf 4
 echo ""
 echo "Motto: I'm lovin' it"
+
+echo " "
 
 printf "About Us: We are a virtual pizza place with specialties found no where else!\n And when we say no where else, we mean NOWHERE ELSE!"
 
