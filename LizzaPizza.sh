@@ -38,25 +38,11 @@ tput setaf 6
 read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
   case $orderplease in
    [yY]*);;
-     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
+   [nN]*)
+    exit;; 
+     *)
       echo "Please enter a valid selection"
-       initialq;;
-       [nN]*)
-  exit
- esac
-}
-#####################################################
-function initialq #function asks user if they would like to order
-{
-tput setaf 6
-read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
-  case $orderplease in
-   [yY]*);;
-     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
-      echo "Please enter a valid selection"
-       initialq;;
-       [nN]*)
-  exit
+       initialq
  esac
 }
 #####################################################
@@ -103,13 +89,13 @@ then
   echo "You have selected Cheese Pizza."
   read -p " How many would you like? >> " B
    case $B in
-    [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     echo "Please enter a valid number"
-      sleep .6;;
-      [123456789]*)
-       ansone=$(($A+$B))
-        break
-         esac
+    [1234567890]*)
+     ansone=$(($A+$B))
+      break;;
+       *)
+        echo "Please enter a valid number"
+         sleep .6
+          esac
 
 elif [ "$selection" = "2" ]
  then
@@ -117,13 +103,13 @@ elif [ "$selection" = "2" ]
   echo "You have selected Vegan Pizza." 
   read -p "How many would you like? >> " D
    case $D in
-    [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     echo "Please enter a valid number"
-      sleep .6;;
-      [123456789]*)
-       anstwo=$(($C+$D))
-        break
-         esac
+    [1234567890]*)
+     anstwo=$(($C+$D))
+      break;;
+       *)
+        echo "Please enter a valid number"
+         sleep .6
+          esac
 
 elif [ "$selection" = "3" ]
  then
@@ -131,13 +117,13 @@ elif [ "$selection" = "3" ]
   echo "You have selected Lizza's Special."
   read -p " How many would you like? >> " F
    case $F in
-    [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     echo "Please enter a number"
-      sleep .6;;
-      [123456789]*)
-       ansthree=$(($E+$F))
-        break
-         esac
+    [1234567890]*)
+     ansthree=$(($E+$F))
+      break;;
+       *)
+        echo "Please enter a number"
+         sleep .6
+          esac
 else 
  echo "Please enter a valid selection."
   sleep .6
@@ -149,6 +135,7 @@ loopitem
 #####################################################
 function loopitem #this function loops the food selection 
 {
+selection=0
 tput setaf 6
 sleep .6
 clear
@@ -157,13 +144,13 @@ foodmenu
 order
 tput setaf 6
 read -p "Would you like another food item? >> " input
-case $input in
- [yY]*)
-  codefood;;
-  [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
-  echo "Please enter 'yes' or 'no'"
-  loopitem;; 
-  [nN]*)
+ case $input in
+  [yY]*)
+   codefood;;
+   [nN]*);;
+    *)
+     echo "Please enter 'yes' or 'no'"
+      loopitem
 esac
 }
 #####################################################
@@ -180,13 +167,13 @@ if [ "$selection" = "1" ]
   echo "You have selected Wine" 
   read -p " How many glasses would you like? >> " drinkone
    case $drinkone in
-    [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-     echo "Please enter a number"
-      sleep .6;;
-      [123456789]*)
+    [1234567890]*)
        ansfour=$(($da+$drinkone))
-        break
-         esac
+        break;;
+         *)
+          echo "Please enter a number"
+           sleep .6
+            esac
 
 elif [ "$selection" = "2" ]
  then
@@ -194,12 +181,12 @@ elif [ "$selection" = "2" ]
   echo "You have selected Smoothie." 
    read -p "How many Smoothies would you like? >> " drinktwo
     case $drinktwo in
-     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-      echo "Please enter a valid number"
-       sleep .6;;
-        [123456789]*)
-         ansfive=$(($db+$drinktwo))
-          break
+     [1234567890]*)
+      ansfive=$(($db+$drinktwo))
+       break;; 
+        *)
+         echo "Please enter a valid number"
+          sleep .6
            esac
 
 elif [ "$selection" = "3" ]
@@ -208,12 +195,12 @@ elif [ "$selection" = "3" ]
   echo "You have selected Soda."
    read -p " How many cups would you like? >> " drinkthree
     case $drinkthree in
-     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
-      echo "Please enter a valid number"
-       sleep .6;;
-        [123456789]*)
-         anssix=$(($dc+$drinkthree))
-          break
+     [1234567890]*)
+      anssix=$(($dc+$drinkthree))
+       break;;
+        *)
+         echo "Please enter a valid number"
+          sleep .6
            esac
 else
  echo "Please enter a valid selection."
@@ -226,6 +213,7 @@ loopdrink
 #####################################################
 function loopdrink #this function loops the drink selection 
 {
+selection=0
 tput setaf 6
 sleep .6
 clear
@@ -237,10 +225,10 @@ read -p "Would you like another drink? >> " input
 case $input in
  [yY]*)
   codedrink;;
-  [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
-  echo "Please enter 'yes' or 'no'"
-  loopdrink;;
-  [nN]*)
+  [nN]*);;
+   *)
+    echo "Please enter 'yes' or 'no'"
+     loopdrink
 esac
 }
 #####################################################
@@ -254,11 +242,11 @@ tput setaf 6
     drinkmenu
     order
     codedrink;;
-     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
-      echo "Please enter a valid selection"
-       drinkq;;
-        [nN]*)
- esac
+     [nN]*);;
+      *)
+       echo "Please enter a valid selection"
+        drinkq
+esac
 }
 #####################################################
 function order #Displays current order
