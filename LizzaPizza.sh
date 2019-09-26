@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #Variables-------------------------------------------------------------------------------
+NUMCHECK='^[0-9]+$'
+
 FOOD1=55
 FOOD2=70
 FOOD3=99
@@ -89,13 +91,10 @@ then
   echo "You have selected Cheese Pizza."
   read -p " How many would you like? >> " B
    case $B in
-    [1234567890]*)
+    else
      ansone=$(($A+$B))
-      break;;
-       *)
-        echo "Please enter a valid number"
-         sleep .6
-          esac
+      break
+       fi
 
 elif [ "$selection" = "2" ]
  then
