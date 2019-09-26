@@ -19,6 +19,77 @@ anssix=0
 selection=0
 
 #Functions------------------------------------------------------------------------------
+function title #Clears the screen then displays title
+{
+
+	clear
+tput setaf 3
+echo "    __    ______________   ___   _ "
+echo "   / /   /  _/__  /__  /  /   | ( )_____ "
+echo "  / /    / /   / /  / /  / /| | |// ___/ "
+echo " / /____/ /   / /__/ /__/ ___ |  (__  ) "
+echo "/_____/___/  /____/____/_/  |_| /____/ "
+printf "\n"	
+}     
+#####################################################
+function initialq #function asks user if they would like to order
+{
+tput setaf 6
+read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
+  case $orderplease in
+   [yY]*);;
+     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
+      echo "Please enter a valid selection"
+       initialq;;
+       [nN]*)
+  exit
+ esac
+}
+#####################################################
+function initialq #function asks user if they would like to order
+{
+tput setaf 6
+read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
+  case $orderplease in
+   [yY]*);;
+     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
+      echo "Please enter a valid selection"
+       initialq;;
+       [nN]*)
+  exit
+ esac
+}
+#####################################################
+function foodmenu #Displays food menu
+{
+tput setaf 6
+
+echo "F O O D  M E N U"
+echo "--------------------------------"
+
+printf "1) Cheese Pizza - $"55"\n - Bread bits mixed into a pile of tomatoe sauce. *Does not come with cheese\n"
+
+printf "2) Vegan Pizza - $"70"\n - A Whole Tomatoe\n"
+
+printf "3) Lizza's Special - $"99"\n - Hot melted cheese, comes with a metal straw to drink it with\n"
+echo ""
+}
+#####################################################
+function drinkmenu #just displays the drink menu
+{
+tput setaf 6
+
+echo " D R I N K S   M E N U "
+echo "--------------------------------"
+
+printf "1) Wine - $"9"\n - A premium 1901 Merlot.\n" 
+
+printf "2) Smoothie -$"5"\n - Red berries smoothie.\n" 
+
+printf "3) Soda - $"4"\n - Fruit Punch flavoured soda.\n" 
+echo ""
+}
+#####################################################
 function codefood
 {
 tput setaf 6
@@ -34,11 +105,12 @@ then
    case $B in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
      echo "Please enter a valid number"
-      sleep 1;;
+      sleep .6;;
       [123456789]*)
        ansone=$(($A+$B))
         break
          esac
+
 elif [ "$selection" = "2" ]
  then
  C=$anstwo
@@ -47,11 +119,12 @@ elif [ "$selection" = "2" ]
    case $D in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
      echo "Please enter a valid number"
-      sleep 1;;
+      sleep .6;;
       [123456789]*)
        anstwo=$(($C+$D))
         break
          esac
+
 elif [ "$selection" = "3" ]
  then
  E=$ansthree
@@ -60,14 +133,14 @@ elif [ "$selection" = "3" ]
    case $F in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
      echo "Please enter a number"
-      sleep1;;
+      sleep .6;;
       [123456789]*)
        ansthree=$(($E+$F))
         break
          esac
 else 
  echo "Please enter a valid selection."
-  sleep 1
+  sleep .6
   codefood
   fi
    done
@@ -77,7 +150,7 @@ loopitem
 function loopitem #this function loops the food selection 
 {
 tput setaf 6
-sleep 2
+sleep .6
 clear
 title
 foodmenu
@@ -109,7 +182,7 @@ if [ "$selection" = "1" ]
    case $drinkone in
     [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
      echo "Please enter a number"
-      sleep 1;;
+      sleep .6;;
       [123456789]*)
        ansfour=$(($da+$drinkone))
         break
@@ -123,11 +196,12 @@ elif [ "$selection" = "2" ]
     case $drinktwo in
      [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
       echo "Please enter a valid number"
-       sleep 1;;
+       sleep .6;;
         [123456789]*)
          ansfive=$(($db+$drinktwo))
           break
            esac
+
 elif [ "$selection" = "3" ]
  then
  dc=$anssix
@@ -136,14 +210,14 @@ elif [ "$selection" = "3" ]
     case $drinkthree in
      [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0]*)
       echo "Please enter a valid number"
-       sleep 1;;
+       sleep .6;;
         [123456789]*)
          anssix=$(($dc+$drinkthree))
           break
            esac
 else
  echo "Please enter a valid selection."
-  sleep 1
+  sleep .6
   codedrink
   fi
    done
@@ -153,7 +227,7 @@ loopdrink
 function loopdrink #this function loops the drink selection 
 {
 tput setaf 6
-sleep 2
+sleep .6
 clear
 title
 drinkmenu
@@ -170,58 +244,7 @@ case $input in
 esac
 }
 #####################################################
-function drinkmenu #just displays the drink menu
-{
-tput setaf 6
-
-echo " D R I N K S   M E N U "
-echo "--------------------------------"
-
-printf "1) Wine - $"9"\n - A premium 1901 Merlot.\n" 
-
-printf "2) Smoothie -$"5"\n - Red berries smoothie.\n" 
-
-printf "3) Soda - $"4"\n - Fruit Punch flavoured soda.\n" 
-echo ""
-}
-#####################################################
-function foodmenu #Displays food menu
-{
-tput setaf 6
-
-echo "F O O D  M E N U"
-echo "--------------------------------"
-
-printf "1) Cheese Pizza - $"55"\n - Bread bits mixed into a pile of tomatoe sauce. *Does not come with cheese\n"
-
-printf "2) Vegan Pizza - $"70"\n - A Whole Tomatoe\n"
-
-printf "3) Lizza's Special - $"99"\n - Hot melted cheese, comes with a metal straw to drink it with\n"
-echo ""
-}
-##################################################### 
-function order #Displays current order
-{
-tput setaf 5
- printf "Your Current Order:\n \nFood:\n-Cheese Pizza(s): $ansone \n-Vegan Pizza(s): $anstwo \n-Lizza's Special(s): $ansthree \n\n Drink:\n-Wine(s): $ansfour \n-Smoothie(s): $ansfive \n-Soda(s): $anssix \n\n" 
-tput sgr0
-}
-#####################################################
-function initialq #function asks user if they would like to order
-{
-tput setaf 6
-read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
-  case $orderplease in
-   [yY]*);;
-     [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
-      echo "Please enter a valid selection"
-       initialq;;
-       [nN]*)
-  exit
- esac
-}
-#####################################################
-function drinkq #asks if the user will order a drink
+function drinkq #asks if the user will order a drink, if yes: displays title, drink menu, current order, and allows drink choice
 {
 tput setaf 6
  read -p "Would you like a drink? [y / n] " yn
@@ -238,19 +261,13 @@ tput setaf 6
  esac
 }
 #####################################################
-function title #Clears the screen then displays title
+function order #Displays current order
 {
-
-	clear
-tput setaf 3
-echo "    __    ______________   ___   _ "
-echo "   / /   /  _/__  /__  /  /   | ( )_____ "
-echo "  / /    / /   / /  / /  / /| | |// ___/ "
-echo " / /____/ /   / /__/ /__/ ___ |  (__  ) "
-echo "/_____/___/  /____/____/_/  |_| /____/ "
-printf "\n"	
-}                              
-
+tput setaf 5
+ printf "Your Current Order:\n \nFood:\n-Cheese Pizza(s): $ansone \n-Vegan Pizza(s): $anstwo \n-Lizza's Special(s): $ansthree\n"
+ printf "\nDrink:\n-Wine(s): $ansfour \n-Smoothie(s): $ansfive \n-Soda(s): $anssix \n\n" 
+tput sgr0
+}
 #####################################################
 function total #calculates the total of your order including tax
 {
@@ -303,7 +320,7 @@ order
 drinkq
 
 #Displays total cost and total amount of each item
-sleep 2
+sleep 1
 title
 order
 total
