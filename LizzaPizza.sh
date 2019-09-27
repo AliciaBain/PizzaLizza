@@ -37,11 +37,12 @@ printf "\n"
 function initialq #function asks user if they would like to order
 {
 tput setaf 6
-read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
+read -p "Welcome to Lizza's Pizza, would you like to order some food? [y / n] " orderplease
   case $orderplease in
    [yY]*);;
    [nN]*)
-    exit;; 
+   title
+    drinkq;; 
      *)
       echo "Please enter a valid selection"
        initialq
@@ -307,7 +308,6 @@ title
 drinkmenu
 order
 drinkq
-
 #Displays total cost and total amount of each item
 sleep 1
 title
