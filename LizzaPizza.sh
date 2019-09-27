@@ -90,39 +90,41 @@ then
  A=$ansone
   echo "You have selected Cheese Pizza."
   read -p " How many would you like? >> " B
-   case $B in
-    else
-     ansone=$(($A+$B))
-      break
-       fi
+   if ! [[ $B =~ $NUMCHECK ]]
+    then
+     echo "Please enter a valid number"	    
+      sleep .6
+   else  
+    ansone=$(($A+$B))
+     break
+      fi
 
 elif [ "$selection" = "2" ]
  then
  C=$anstwo
   echo "You have selected Vegan Pizza." 
   read -p "How many would you like? >> " D
-   case $D in
-    [1234567890]*)
-     anstwo=$(($C+$D))
-      break;;
-       *)
-        echo "Please enter a valid number"
-         sleep .6
-          esac
-
+   if ! [[ $D =~ $NUMCHECK ]]
+    then
+     echo "Please enter a valid number"
+      sleep .6
+   else 
+    anstwo=$(($C+$D))
+     break
+      fi
 elif [ "$selection" = "3" ]
  then
  E=$ansthree
   echo "You have selected Lizza's Special."
   read -p " How many would you like? >> " F
-   case $F in
-    [1234567890]*)
-     ansthree=$(($E+$F))
-      break;;
-       *)
-        echo "Please enter a number"
-         sleep .6
-          esac
+   if ! [[ $F =~ $NUMCHECK ]]
+    then
+     echo "Please enter a valid number"     
+      sleep .6
+   else
+    ansthree=$(($E+$F))
+     break
+      fi
 else 
  echo "Please enter a valid selection."
   sleep .6
@@ -136,7 +138,7 @@ function loopitem #this function loops the food selection
 {
 selection=0
 tput setaf 6
-sleep .6
+sleep 1
 clear
 title
 foodmenu
@@ -147,9 +149,9 @@ read -p "Would you like another food item? >> " input
   [yY]*)
    codefood;;
    [nN]*);;
-    *)
+    [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
      echo "Please enter 'yes' or 'no'"
-      loopitem
+     loopitem
 esac
 }
 #####################################################
@@ -165,42 +167,42 @@ if [ "$selection" = "1" ]
  da=$ansfour
   echo "You have selected Wine" 
   read -p " How many glasses would you like? >> " drinkone
-   case $drinkone in
-    [1234567890]*)
-       ansfour=$(($da+$drinkone))
-        break;;
-         *)
-          echo "Please enter a number"
-           sleep .6
-            esac
+   if ! [[ $drinkone =~ $NUMCHECK ]]
+    then
+     echo "Please enter a valid number"     
+      sleep .6
+   else
+    ansfour=$(($da+$drinkone))
+     break
+      fi
 
 elif [ "$selection" = "2" ]
  then
  db=$ansfive
   echo "You have selected Smoothie." 
    read -p "How many Smoothies would you like? >> " drinktwo
-    case $drinktwo in
-     [1234567890]*)
-      ansfive=$(($db+$drinktwo))
-       break;; 
-        *)
-         echo "Please enter a valid number"
-          sleep .6
-           esac
+    if ! [[ $drinktwo =~ $NUMCHECK ]]
+    then
+     echo "Please enter a valid number"     
+      sleep .6
+   else
+    ansfive=$(($db+$drinktwo))
+     break
+      fi
 
 elif [ "$selection" = "3" ]
  then
  dc=$anssix
   echo "You have selected Soda."
    read -p " How many cups would you like? >> " drinkthree
-    case $drinkthree in
-     [1234567890]*)
-      anssix=$(($dc+$drinkthree))
-       break;;
-        *)
-         echo "Please enter a valid number"
-          sleep .6
-           esac
+    if ! [[ $drinkthree =~ $NUMCHECK ]]
+    then
+     echo "Please enter a valid number"     
+      sleep .6
+   else
+    anssix=$(($dc+$drinkthree))
+     break
+      fi
 else
  echo "Please enter a valid selection."
   sleep .6
@@ -214,7 +216,7 @@ function loopdrink #this function loops the drink selection
 {
 selection=0
 tput setaf 6
-sleep .6
+sleep 1
 clear
 title
 drinkmenu
@@ -225,7 +227,7 @@ case $input in
  [yY]*)
   codedrink;;
   [nN]*);;
-   *)
+   [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ0123456789]*)
     echo "Please enter 'yes' or 'no'"
      loopdrink
 esac
@@ -271,7 +273,7 @@ SUM=$(($ITEM1+$ITEM2+$ITEM3+$ITEM4+$ITEM5+$ITEM6))
 TAX=$(echo "$SUM*$Z"|bc)
 TOTAL=$(echo "$SUM+$TAX"|bc)
 tput setaf 3
- echo "Total: $"$TOTAL""
+ printf "Your Total is .`sleep .3`.`sleep .3`.`sleep .3`.`sleep .3`.`sleep .3`.: $"$TOTAL""
 }
 #---------------------------------------------------------------------------------------
 
