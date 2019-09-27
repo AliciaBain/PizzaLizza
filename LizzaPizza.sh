@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Group 1: Aaron Guanch, Alicia Bain, Assel Baigabulova
 #Variables-------------------------------------------------------------------------------
 NUMCHECK='^[0-9]+$'
 
@@ -37,12 +37,11 @@ printf "\n"
 function initialq #function asks user if they would like to order
 {
 tput setaf 6
-read -p "Welcome to Lizza's Pizza, would you like to order some food? [y / n] " orderplease
+read -p "Welcome to Lizza's Pizza, would you like to place an order? [y / n] " orderplease
   case $orderplease in
    [yY]*);;
    [nN]*)
-   title
-    drinkq;; 
+    exit;; 
      *)
       echo "Please enter a valid selection"
        initialq
